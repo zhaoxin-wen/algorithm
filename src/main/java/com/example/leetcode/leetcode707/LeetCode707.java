@@ -26,17 +26,8 @@ public class LeetCode707 {
 
 
     public LeetCode707() {
-        this.size = 0;
-        this.head = new ListNode(0);
-    }
-
-    public static void main(String[] args) {
-
-    }
-
-    public void MyLinkedList() {
-
-
+        size = 0;
+        head = new ListNode(0);
     }
 
     public int get(int index) {
@@ -44,7 +35,7 @@ public class LeetCode707 {
             return -1;
         }
         ListNode dummy = head;
-        for (int i = 0; i < index; i++) {
+        for (int i = 0; i <= index; i++) {
             dummy = dummy.next;
         }
         return dummy.val;
@@ -59,22 +50,48 @@ public class LeetCode707 {
     }
 
     public void addAtIndex(int index, int val) {
-        ListNode dummy = head;
-        ListNode newNode = new ListNode(val);
-        newNode.next = dummy.next.next;
-        if (index <= 0) {
-            dummy.next = newNode;
-        } else if (index >= size) {
-            for (int i = 0; i < size; i++) {
-                dummy = dummy.next;
-            }
-            dummy.next = newNode;
+
+        if (index > size) {
+            return;
         }
+        if (index < 0) {
+            index = 0;
+        }
+        size++;
+        ListNode prev = head;
+        for (int i = 0; i < index; i++) {
+            prev = prev.next;
+        }
+        ListNode newNode = new ListNode(val);
+        newNode.next = prev.next;
+        prev.next = newNode;
     }
 
     public void deleteAtIndex(int index) {
-        ListNode dummy = head;
-
+        /**
+         * 边界条件有两个，一个是index = 0，一个是index = size。我们分别讨论
+         * 1.inxex < 0
+         * 2.index = 0
+         * 3.index > 0 && index < size
+         * 4.index = size
+         * 5.index > size
+         *
+         * 1、4跟5可以合并起来
+         * 还有情况2跟情况3
+         */
+        if (index < 0 || index >= size) {
+            return;
+        }
+        size--;
+        if (index == 0) {
+            head = head.next;
+            return;
+        }
+        ListNode prev = head;
+        for (int i = 0; i < index; i++) {
+            prev = prev.next;
+        }
+        prev.next = prev.next.next;
     }
 
 }
