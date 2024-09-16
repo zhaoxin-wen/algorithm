@@ -65,4 +65,33 @@ public class LeetCode59 {
         }
         return result;
     }
+
+
+    /**
+     * leetcode上的一种解法
+     * @param n
+     * @return
+     *  for (int i = l; i <= r; i++) mat[t][i] = num++; // left to right.  因为是从左开始，所以i=l，因为是“到右边”，所以i<=r
+     *  t++;         遍历完了上边的一行，所以上边界会向上移动，所以是t++
+     *  for (int i = t; i <= b; i++) mat[i][r] = num++; // top to bottom. 因为是从上开始，所以i=t，因为是“到下边”，所以i<=b
+     *  r--;         遍历完了右边的一行，所以右边界会向左移动，所以是r--
+     */
+    public int[][] generateMatrix1(int n) {
+        int l = 0, r = n - 1, t = 0, b = n - 1;
+        int[][] mat = new int[n][n];
+        int num = 1, tar = n * n;
+        while (num <= tar) {
+            for (int i = l; i <= r; i++) mat[t][i] = num++; // left to right.
+            t++;
+            for (int i = t; i <= b; i++) mat[i][r] = num++; // top to bottom.
+            r--;
+            for (int i = r; i >= l; i--) mat[b][i] = num++; // right to left.
+            b--;
+            for (int i = b; i >= t; i--) mat[i][l] = num++; // bottom to top.
+            l++;
+        }
+        return mat;
+    }
 }
+
+

@@ -21,10 +21,10 @@ public class LeetCode27 {
     }
 
     public static int removeElement(int[] nums, int val) {
-        int length = nums.length;
         if (nums == null || nums.length <= 0) {
-            return -1;
+            return 0;
         }
+        int length = nums.length;
         for (int i = 0; i < length; i++) {
             if (nums[i] == val) {
                 for (int j = i + 1; j < length; j++) {
@@ -81,7 +81,7 @@ public class LeetCode27 {
          *  4:数组全部元素都不是要移除的元素
          *  5:空数组 返回0
          * 步骤
-         *  whiel(left < right){
+         *  whiel(left <= right){
          *      while(){
          *      从左边找到第需要被替换的元素
          *      }

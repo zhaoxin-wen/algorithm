@@ -59,4 +59,58 @@ public class LeetCode160 {
         }
         return null;
     }
+
+
+    /**
+     * 2024年9月15日 重新做了一遍
+     * @param headA
+     * @param headB
+     * @return
+     */
+    public static ListNode getIntersectionNode2(ListNode headA, ListNode headB) {
+        int lenA = 0, lenB = 0;
+        ListNode temp = headA;
+        ListNode virtualHeadA = new ListNode(0);
+        ListNode virtualHeadB = new ListNode(0);
+        virtualHeadA.next = headA;
+        virtualHeadB.next = headB;
+        while (temp != null) {
+            lenA++;
+            temp = temp.next;
+        }
+        temp = headB;
+        while (temp != null) {
+            lenB++;
+            temp = temp.next;
+        }
+        //交换过后，a是长的，b是短的
+        if(lenB > lenA){
+            temp = headB;
+            headB = headA;
+            headA = temp;
+            int temp2 = lenB;
+            lenB = lenA;
+            lenA =temp2;
+            // 犯了一个错。下面两行在第一次提交代码的时候没有写。
+            // 交换完链表A跟链表B后，相应的虚拟头节点也要做修改
+            virtualHeadA.next = headA;
+            virtualHeadB.next = headB;
+        }
+        int count = lenA-lenB;
+        ListNode curA = virtualHeadA;
+        for(int i = 0; i < count;i++){
+            curA = curA.next;
+        }
+        //此时链表a跟链表b的剩余个数是一样的
+        ListNode curB = virtualHeadB;
+        while(curA != null && curB != null){
+            if(curA == curB){
+                return curA;
+            }else{
+                curA = curA.next;
+                curB = curB.next;
+            }
+        }
+        return null;
+    }
 }

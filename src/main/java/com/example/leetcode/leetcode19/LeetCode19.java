@@ -50,4 +50,28 @@ public class LeetCode19 {
          */
         return dumyNode.next;
     }
+
+
+    /**
+     * 2024年9月15日重新做
+     * 这道题相对来说简单一些，看到倒数n，基本上就知道了是用快慢指针的方法
+     * @param head
+     * @param n
+     * @return
+     */
+    public static ListNode removeNthFromEnd2(ListNode head, int n) {
+        ListNode virtualHead = new ListNode(0);
+        virtualHead.next = head;
+        ListNode slow = virtualHead;
+        ListNode fast = virtualHead;
+        for(int i = 0; i < n;i++){
+            fast = fast.next;
+        }
+        while(fast.next != null){
+            slow = slow.next;
+            fast = fast.next;
+        }
+        slow.next = slow.next.next;
+        return virtualHead.next;
+    }
 }

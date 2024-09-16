@@ -29,7 +29,7 @@ public class LeetCode209 {
 
 
     }
-    public int minSubArrayLen(int target, int[] nums) {
+/*    public int minSubArrayLen(int target, int[] nums) {
 
         if (nums == null) {
             return 0;
@@ -39,9 +39,11 @@ public class LeetCode209 {
         int result = Integer.MAX_VALUE;
         while (right < nums.length) {
             curSum += nums[right];
-            /**
-             * 犯错点一：下面这里应该用while，而不是if
-             */
+            */
+
+    /**
+     * 犯错点一：下面这里应该用while，而不是if
+     *//*
             while (curSum >= target) {
                 result = Math.min(result, right - left + 1);
                 curSum -= nums[left++];
@@ -50,5 +52,37 @@ public class LeetCode209 {
         }
         //犯错点二：假如代码不进入循环，那么应该按照题目要求应该返回0，而不是Integer.MAX_VALUE
         return result == Integer.MAX_VALUE ? 0 : result;
+    }*/
+    public int minSubArrayLen(int target, int[] nums) {
+        int result = Integer.MAX_VALUE;
+        int left = 0, right = 0, sum = 0;
+        while (right < nums.length) {
+            sum += nums[right];
+            while (sum >= target) {
+                result = Math.min(result, right - left + 1);
+                sum -= nums[left++];
+            }
+            right++;
+        }
+        return result == Integer.MAX_VALUE ? 0 : result;
     }
+
+    public int minSubArrayLen2(int target, int[] nums) {
+        int cursum = 0,subLength = 0;
+        int result = Integer.MAX_VALUE;
+        for (int i = 0; i < nums.length; i++) {
+            cursum = 0;
+            for (int j = i; j < nums.length; j++) {
+                cursum += nums[j];
+                if (cursum >= target) {
+                    subLength = j-i+1;
+                    result = subLength < result ? subLength : result;
+                    break;
+                }
+            }
+        }
+        return result == Integer.MAX_VALUE ? 0 : result;
+    }
+
+
 }

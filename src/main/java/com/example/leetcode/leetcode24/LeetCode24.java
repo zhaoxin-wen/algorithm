@@ -10,12 +10,9 @@ import com.example.leetcode.leetcode203.ListNode;
 public class LeetCode24 {
 
     public static void main(String[] args) {
-
     }
 
     public static ListNode swapPairs(ListNode head) {
-
-
         /**
          * 给你一个链表，两两交换其中相邻的节点，并返回交换后链表的头节点。你必须在不修改节点内部的值的情况下完成本题（即，只能进行节点交换）。
          * 链表中节点的数目在范围 [0, 100] 内
@@ -44,5 +41,28 @@ public class LeetCode24 {
         }
         return head;
 
+    }
+
+    /**
+     * 2024年9月15日
+     * 重新写了一版
+     * @param head
+     * @return
+     */
+    public static ListNode swapPairs2(ListNode head) {
+        ListNode virtualHead = new ListNode(0);
+        virtualHead.next = head;
+        ListNode slowNode, fastNode;
+        ListNode cur = virtualHead;
+        while(cur.next != null && cur.next.next!= null){
+            ListNode temp = cur.next.next.next;
+            slowNode = cur.next;
+            fastNode = cur.next.next;
+            fastNode.next = slowNode;
+            slowNode.next = temp;
+            cur.next = fastNode;
+            cur = slowNode;
+        }
+        return virtualHead.next;
     }
 }

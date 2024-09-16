@@ -53,7 +53,7 @@ public class LeetCode203 {
         while (cur != null && cur.next != null) {
 //        while (cur.next != null) {
             /**
-             *  刚开始的时候写成了这样。
+             *  刚开始的时候写成了这样。   2024年9月14日，再次犯了这个错误
              *  if (cur.next.val == val) {
              *  cur.next = cur.next.next;
              *  }

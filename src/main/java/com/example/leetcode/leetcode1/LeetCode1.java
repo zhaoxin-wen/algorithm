@@ -37,6 +37,14 @@ import java.util.Map;
  *
  *
  * 进阶：你可以想出一个时间复杂度小于 O(n2) 的算法吗？
+ *
+ *
+ * 本题其实有四个重点：
+ *
+ * 1、为什么会想到用哈希表
+ * 2、哈希表为什么用map
+ * 3、本题map是用来存什么的
+ * 4、map中的key和value用来存什么的
  */
 public class LeetCode1 {
     public static void main(String[] args) {
