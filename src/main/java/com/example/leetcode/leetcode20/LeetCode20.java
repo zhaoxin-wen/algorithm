@@ -1,7 +1,9 @@
 package com.example.leetcode.leetcode20;
 
+
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.Stack;
 
 /**
  * @author wzw
@@ -42,4 +44,7 @@ public class LeetCode20 {
         }
         return deque.isEmpty(); // 第一种情况，这里返回false;第四种情况，这里返回true;
     }
+
+
+
 }

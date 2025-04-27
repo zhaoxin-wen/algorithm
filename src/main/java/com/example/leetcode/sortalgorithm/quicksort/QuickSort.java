@@ -1,7 +1,8 @@
 package com.example.leetcode.sortalgorithm.quicksort;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.util.Arrays;
 
 /**
  * @author wzw
@@ -12,9 +13,10 @@ public class QuickSort {
     public static void main(String[] args) throws JsonProcessingException {
         int[] arr = new int[]{4, 3,1, 5, 7};
         quickSort(arr, 0, 4);
-        ObjectMapper objectMapper = new ObjectMapper();
+/*        ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(arr);
-        System.out.println(json);
+        System.out.println(json);*/
+        Arrays.stream(arr).forEach(System.out::println);
     }
 
     public static void quickSort(int[] arr, int low, int high) {
@@ -33,18 +35,18 @@ public class QuickSort {
         }
 
         swap(arr, low, j);
-        System.out.println("i = " + i);
+/*        System.out.println("i = " + i);
         System.out.println("j = " + j);
         System.out.println("low = " + low);
         System.out.println("high = " + high);
-        quickSort(arr, low, j - 1);
+        quickSort(arr, low, j - 1);*/
         quickSort(arr, j + 1, high);
     }
-
     private static void swap(int[] arr, int i, int j) {
-        int tmp = arr[i];
+        int temp = arr[i];
         arr[i] = arr[j];
-        arr[j] = tmp;
+        arr[j] = temp;
     }
+
 
 }

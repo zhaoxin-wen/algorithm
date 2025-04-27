@@ -1,4 +1,4 @@
-package com.example.leetcode.leetcodoe454;
+package com.example.leetcode.leetcode454;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,6 +37,10 @@ public class LeetCode454 {
 
     /**
      * 这道题对我来说来时不太好理解。手写模拟了一遍过程才清晰一点，不知道下次能不能自己写出来
+     *
+     *
+     * 2024年9月19日重新做。忘记了高级for循环的写法，用了普通的for循环，使得代码比较难看。不过总的思路还记得。
+     * 第二个问题是忘记了getOrDefault这个api。
      * @param nums1
      * @param nums2
      * @param nums3

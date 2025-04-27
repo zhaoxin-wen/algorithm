@@ -11,7 +11,8 @@ import java.util.LinkedList;
  */
 public class LeetCode1047 {
     public static void main(String[] args) {
-
+        String s = removeDuplicates2("abbaca");
+        System.out.println(s);
     }
 
     public String removeDuplicates(String s) {
@@ -19,9 +20,9 @@ public class LeetCode1047 {
         char ch;
         for (int i = 0; i < s.length(); i++) {
             ch = s.charAt(i);
-            if(deque.isEmpty() || deque.peek() != ch){
+            if (deque.isEmpty() || deque.peek() != ch) {
                 deque.push(ch);
-            }else if(deque.peek() == ch){
+            } else if (deque.peek() == ch) {
                 deque.pop();
             }
         }
@@ -32,4 +33,29 @@ public class LeetCode1047 {
         sb.reverse();
         return sb.toString();
     }
+
+
+    public static String removeDuplicates2(String s) {
+        char[] charArr = s.toCharArray();
+        Deque<Character> deque = new LinkedList<>();
+        for (int i = 0; i < charArr.length; i++) {
+            if (deque.isEmpty() || deque.peek() != charArr[i]) {
+                deque.push(charArr[i]);
+            } else if (s.charAt(i) == deque.peek()) {
+                deque.pop();
+            }
+        }
+        Deque<Character> deque2 = new LinkedList<>();
+        while (!deque.isEmpty()) {
+            deque2.push(deque.pop());
+        }
+        StringBuilder sb = new StringBuilder();
+        while (!deque2.isEmpty()) {
+            sb.append(deque2.pop());
+        }
+        return String.valueOf(sb);
+    }
+
+
+
 }
